@@ -1,0 +1,401 @@
+File Name,Extracted Data
+BRP-220323.pdf,"Based on the information provided, the following fields can be extracted from the invoice:
+
+Invoice Number: BRP-220323
+Invoice Date: 03/23/2022
+Part Numbers: 521000111 N, 87141002
+Descriptions: PARTES MOLDEADAS DE POLIESTIRENO (EMP), PARTES MOLDEADAS DE POLIESTIRENO
+Quantities: 80.000EA, 700.000EA
+Units of Measure: EA
+Costs: 24.16000, 48.23000
+Weights: 0.57000, 1.43000
+Country of Origin: MEX
+Supplier: TEGRANT INTERNATIONAL, INC."
+BRP-220330.pdf,"Invoice Number: BRP-220330
+Invoice Date: 03/30/2022
+Part Numbers: 521000110 N, 521000111 N, 521000112 N, 703101287
+Descriptions: PARTES MOLDEADAS DE POLIESTIRENO (EMP)
+Quantities: 70.000EA, 40.000EA, 30.000EA, 1,000.000EA
+Units of Measure: EA, EA, EA, EA
+Costs: 7.71540, 12.08000, 9.45750, 68.90000
+Weights: 0.35000, 0.62000, 0.64000, 1.47000
+Country of Origin: MEX
+Supplier: TEGRANT INTERNATIONAL, INC."
+DISH-211108.pdf,"Based on the provided invoice, the following fields can be extracted:
+
+Invoice Number: DISH-211108
+Invoice Date: 11/08/2021
+Part Numbers: DH-208830
+Descriptions: PARTES MOLDEADAS DE ARCEL (EMP)
+Quantities: 960.000 EA
+Units of Measure: BULTOS
+Costs: 19.64160 (UnitValue), 19.64160 (TotalValue)
+Weights: 5.85040 KGS (NetWeight), 5,616.38400 KGS (GrossWeight)
+Country of Origin: MEX
+Supplier: TEGINANT DE MEXICO S.A. DE C.V."
+DISH-211220.pdf,"Based on the provided invoice, the following fields can be extracted:
+
+Invoice Number: DISH-211220
+Invoice Date: 12/20/2021
+Part Numbers: H0195310 P, H201724 P
+Descriptions: EMPAQUE DE ESPUMA PLASTICA MOLDEADA, PARTES MOLDEADAS DE POLIESTIRENO (EMP)
+Quantities: 480.000 EA (each)
+Units of Measure: EA (each)
+Costs: 326.39040 USD, 360.06240 USD
+Weights: 7.43220 KGS, 7.07350 KGS
+Country of Origin: MEX
+Supplier: TEGRANT INTERNATIONAL, INC."
+FACTURA-1039597--.pdf,"Fields extracted from the invoice:
+
+- Invoice Number: DISH-211112
+- Invoice Date: 11/12/2021
+- Part Numbers: H214490
+- Descriptions: PARTES MOLDEADAS DE POLIESTIRENO (EMP)
+- Quantities: 1,440.000
+- Units of Measure: EA
+- Costs: 1,080.18720
+- Weights (Net and Gross): 6.92510 KGS, 9,972.14400 KGS
+- Country of Origin: MEX
+- Supplier: TEGRANT DE MEXICO S.A. DE C.V."
+5846.pdf,"To extract the required fields from the invoice, I would need to analyze the structure of the document you're working with. In general, here are the fields you mentioned that could potentially be extracted from an invoice:
+
+1. Invoice Number
+2. Invoice Date
+3. Part Numbers (could be multiple entries)
+4. Descriptions (associated with the part numbers)
+5. Quantities (associated with the part numbers)
+6. Units of Measure (associated with the part numbers)
+7. Costs (associated with the part numbers)
+8. Weights (associated with the part numbers)
+9. Country of Origin (associated with the part numbers)
+10. Supplier
+
+Please note that extraction of these fields is subject to the availability and structure of the invoice document. The specific implementation may vary based on the tools or techniques being used for data extraction."
+7313.pdf,"To accurately extract the requested information from an invoice, I would need a sample invoice document. Could you please provide a sample invoice for me to work with?"
+7714.pdf,"To extract the requested fields from an invoice, I would need a sample or the actual invoice document. Please provide the invoice document or a sample invoice so that I can assist you further."
+7752_001.pdf,"To accurately extract the required fields, I would need a sample invoice document. Could you please provide a sample invoice so that I can analyze its structure and extract the necessary information for you?"
+8937.pdf,"To extract the required fields from the invoice, I would need a sample invoice document to work with. Please provide a sample invoice or specify the format in which the data is present in the document."
+CH246636.pdf,"Fields extracted from the invoice:
+
+Invoice Number: 246636
+Invoice Date: 2021-12-27
+Part Numbers: GM227-6530-1
+Descriptions: PACKER,S-16
+Quantities: 46.00
+Units of Measure: H87
+Costs: 2.2200
+Weights: N/A
+Country of Origin: CAN
+Supplier: MHI CANADA AEROSPACE, INC Invoice Number: 246636
+Invoice Date: 2021-12-27
+Part Numbers: GM227-6530-1
+Descriptions: PACKER,S-16
+Quantities: 46.00
+Units of Measure: H87
+Costs: 2.2200
+Weights: N/A (not present in the invoice)
+Country of Origin: CAN
+Supplier: MHI CANADA AEROSPACE, INC"
+CH246666.pdf,"Field values extracted from the invoice:
+
+Invoice Number: CH246666
+Invoice Date: 2021-12-27
+Part Numbers: 287N4106-383
+Descriptions: BRACKET ASSY
+Quantities: 71.00
+Units of Measure: PZA
+Costs: 18.2300
+Weights: N/A (not present in the document)
+Country of Origin: USA (retrieved from the address)
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED Invoice Number: 246666
+Invoice Date: 2021-12-27
+Part Numbers: 287N4106-383
+Descriptions: BRACKET ASSY
+Quantities: 71.00
+Units of Measure: PZA
+Costs: 18.2300
+Weights: Not present in the invoice
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED"
+CH246798.pdf,"Here are the requested fields extracted from the invoice:
+
+Invoice Number: 246798
+Invoice Date: 2021-12-29
+Part Numbers: 453W2013-231
+Descriptions: BRACKET ASSY
+Quantities: 19.00
+Units of Measure: PZA
+Costs: 16.9100
+Weights: N/A (not present in the invoice)
+Country of Origin: USA
+Supplier: THE BOEING COMPANY Fields from the invoice:
+
+Invoice Number: 246798
+Invoice Date: 2021-12-29
+Part Numbers: 453W2013-231
+Descriptions: BRACKET ASSY
+Quantities: 19.00
+Units of Measure: PZA
+Costs: 16.9100
+Weights: N/A
+Country of Origin: USA
+Supplier: THE BOEING COMPANY"
+CH246799.pdf,"Invoice Number: 246799
+Invoice Date: 2021-12-29
+Part Numbers: 453W2013-208
+Descriptions: BRACKET ASSY
+Quantities: 19.00
+Units of Measure: PZA
+Costs: 17.5100
+Weights: N/A
+Country of Origin: USA
+Supplier: THE BOEING COMPANY Here are the requested fields extracted from the invoice:
+
+Invoice Number: 246799
+Invoice Date: 2021-12-29
+Part Numbers: 453W2013-208
+Descriptions: BRACKET ASSY
+Quantities: 19.00
+Units of Measure: PZA
+Costs: 17.5100 USD
+Weights: N/A
+Country of Origin: USA
+Supplier: THE BOEING COMPANY"
+CH246820.pdf,"Invoice Number: 246820
+Invoice Date: 2021-12-29
+Part Numbers: 233A5513-1
+Descriptions: SUPPORT ASSY - P18 EQUIPMENT
+Quantities: 4.00
+Units of Measure: PZA
+Costs: 38.8500
+Weights: N/A
+Country of Origin: USA
+Supplier: THE BOEING COMPANY Invoice Number: 246820
+Invoice Date: 2021-12-29
+
+Part Numbers:
+- 233A5513-1
+
+Description:
+- SUPPORT ASSY - P18 EQUIPMENT
+
+Quantities:
+- 4.00
+
+Units of Measure:
+- PZA
+
+Costs:
+- 38.8500
+
+Country of Origin:
+- MEX
+
+Supplier:
+- TIGHITCO LATINOAMERICA S.A. DE C.V."
+FACTURA-1041635 (1).pdf,"To extract the fields from the invoice, I will need a sample or image of the invoice to accurately identify the location and format of the required information. Once provided, I will be able to list the specific fields such as Invoice Number, Invoice Date, Part Numbers, Descriptions, Quantities, Units of Measure, Costs, Weights, Country of Origin, and Supplier."
+FACTURA-1041635 (2).pdf,"To extract the requested fields, I would utilize Optical Character Recognition (OCR) technology to convert the invoice document into text. Then, I would use pattern matching and keyword search techniques to identify relevant information. Here is a list of the requested fields:
+
+1. Invoice Number: The unique identifier for the invoice.
+2. Invoice Date: The date when the invoice was issued.
+3. Part Numbers: Identifiers for the parts mentioned in the invoice.
+4. Descriptions: Descriptive information about the parts or services mentioned in the invoice.
+5. Quantities: The number of units or quantity of each part.
+6. Units of Measure: The measurement unit for each part (e.g., pieces, kilograms).
+7. Costs: The price or cost associated with each part or service listed on the invoice.
+8. Weights: The weight associated with each part, if provided.
+9. Country of Origin: The country from which the parts were sourced.
+10. Supplier: The name or identification of the supplier who issued the invoice.
+
+Please note that the extraction of these fields may vary depending on the structure and layout of the specific invoice document."
+FACTURA-1041867.pdf,"To extract the requested fields from an invoice, I would need a copy of the invoice document. Could you please provide the invoice in a structured format such as a PDF or an electronic document?"
+GE-220316 MTY.pdf,"Invoice Number: GE-220316 MTY
+Invoice Date: 03/16/2022
+Part Numbers:
+1. 5832887
+2. 5539250
+Descriptions:
+1. PLACA DE POLIETILENO
+2. MANUFACTURA DE PLASTICO
+Quantities:
+1. 75.000 EA
+2. 50.000 EA
+Units of Measure: EA
+Costs:
+1. 1.63275
+2. 17.75800
+Weights:
+1. 7.23000 KGS (Net Weight) / 7.40000 KGS (Gross Weight)
+2. 14.63000 KGS (Net Weight) / 19.39075 KGS (Gross Weight)
+Country of Origin: MEX
+Supplier: TEGANT INTERNATIONAL, INC."
+IACNAGS-220301.pdf,"Here are the fields extracted from the invoice:
+
+Invoice Number: IACNAGS-220301
+Invoice Date: 03/01/2022
+Part Numbers: L0204148AA03, L0204149AA03, L0204507AA03, L0204776AA03, L0206567AA01, L0206568AA01
+Descriptions: PARTES MOLDEADAS DE POLIESTIRENO (AUT)
+Quantities: 900.000EA, 972.000EA, 1,082.000EA, 1,082.000EA, 280.000EA, 280.000EA
+Units of Measure: EA, EA, EA, EA, EA, EA
+Costs: 286.57800, 312.59520, 26.99590, 28.95432, 33.27520, 33.27520
+Weights: 1.81260, 1.78160, 0.29070, 0.29070, 0.83170, 0.83170
+Country of Origin: MEX
+Supplier: TEGANT INTERNATIONAL, INC. Invoice Number: IACNAGS-220301  
+Invoice Date: 03/01/2022  
+Part Numbers: L0204148AA03, L0204149AA03, L0204507AA03, L0204776AA03, L0206567AA01, L0206568AA01  
+Descriptions: PARTES MOLDEADAS DE POLIESTIRENO (AUT)  
+Quantities: 900.000EA, 972.000EA, 1,082.000EA, 1,082.000EA, 280.000EA, 280.000EA  
+Units of Measure: EA  
+Costs/Unit Values: 286.57800, 312.59520, 26.99590, 28.95432, 33.27520, 33.27520  
+Weights (Net): 1.81260, 1.78160, 0.29070, 0.29070, 0.83170, 0.83170  
+Country of Origin: MEX   
+Supplier: TEGRANT INTERNATIONAL, INC."
+8996.pdf,"To effectively extract the requested fields, I need to analyze the structure and format of the invoices you have. Could you please provide an example of an invoice or describe the layout of the invoice information? This will help me identify the patterns and elements to extract accurately."
+9339.pdf,"To accurately extract the fields you mentioned from an invoice, I will need the actual invoice document or a sample of it. Please provide the invoice for me to process and extract the required information."
+9983 (1).pdf,"Based on the information you provided, here are the fields that can be extracted from the invoice:
+
+1. Invoice Number
+2. Invoice Date
+3. Part Numbers (if there are multiple parts listed)
+4. Descriptions (if there are multiple items)
+5. Quantities (if there are multiple items)
+6. Units of Measure (if there are multiple items)
+7. Costs (if there are multiple items)
+8. Weights (if there are multiple items)
+9. Country of Origin (if specified for each item)
+10. Supplier
+
+Please note that the extraction of these fields will depend on the structure and formatting of the invoice document."
+9983.pdf,"To accurately extract the information, please provide the invoice document for analysis."
+BOL11765.pdf,"Sure! Here are the fields extracted from the invoice:
+
+- Invoice Number
+- Invoice Date
+- Part Numbers (if multiple entries)
+- Descriptions (if multiple entries)
+- Quantities (if multiple entries)
+- Units of Measure (if multiple entries)
+- Costs (if multiple entries)
+- Weights (if multiple entries)
+- Country of Origin
+- Supplier"
+CH246840.pdf,"Invoice Number: 246840
+Invoice Date: 2021-12-30
+Part Numbers: 253T7422-2
+Descriptions: SUPPORT
+Quantities: 14.00
+Units of Measure: H87
+Costs: 60.9600
+Weights: N/A (not present in the invoice)
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED Invoice Number: 246840
+Invoice Date: 2021-12-30
+Part Numbers: 253T7422-2
+Descriptions: SUPPORT
+Quantities: 14.00
+Units of Measure: H87
+Costs: 60.9600
+Weights: N/A
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED"
+CH246842.pdf,"Fields extracted from the invoice:
+
+Invoice Number: 246842
+Invoice Date: 2021-12-30
+Part Numbers: 143A0063-43
+Descriptions: STRINGER SPLICE
+Quantities: 39.00
+Units of Measure: H87
+Costs: 20.3200
+Weights: N/A
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED Fields extracted from the invoice:
+
+Invoice Number: 246842
+Invoice Date: 2021-12-30
+Part Numbers: 143A0063-43
+Descriptions: STRINGER SPLICE
+Quantities: 39.00
+Units of Measure: H87
+Costs: 20.3200
+Weights: N/A
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED"
+CH247452.pdf,"Invoice Number: 247452
+Invoice Date: 2022-01-11
+Part Numbers: 148A8130-14
+Descriptions: BRACKET ASSY
+Quantities: 2.00
+Units of Measure: H87
+Costs: 117.4100
+Weights: N/A (not present in the invoice)
+Country of Origin: USA (retrieved from the ""Receptor"" element)
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED (retrieved from the ""Receptor"" element) Fields from the invoice:
+
+Invoice Number: Serie and Folio from the Comprobante element
+Invoice Date: Fecha from the Comprobante element
+Part Numbers: NoIdentificacion from the Concepto element
+Descriptions: Descripcion from the Concepto element
+Quantities: Cantidad from the Concepto element
+Units of Measure: ClaveUnidad from the Concepto element
+Costs: ValorUnitario from the Concepto element
+Weights: NoWeight in this invoice
+Country of Origin: Pais from the Domicilio element under Receptor in the ComercioExterior element
+Supplier: Nombre from the Emisor element
+
+Extracted values:
+
+Invoice Number: CH247452
+Invoice Date: 2022-01-11
+Part Numbers: 148A8130-14
+Descriptions: BRACKET ASSY
+Quantities: 2.00
+Units of Measure: H87
+Costs: 117.4100
+Weights: No weight information available
+Country of Origin: USA
+Supplier: TIGHITCO LATINOAMERICA S.A. DE C.V."
+CH247461.pdf,"The fields from the invoice are as follows:
+
+Invoice Number: Folio=""247461""
+Invoice Date: Fecha=""2022-01-12T07:07:59""
+Part Numbers: NoIdentificacion=""141W5813-28""
+Descriptions: Descripcion=""CLIP""
+Quantities: Cantidad=""2.00""
+Units of Measure: ClaveUnidad=""H87""
+Costs: ValorUnitario=""18.3200""
+Weights: None present
+Country of Origin: Pais=""USA""
+Supplier: Receptor Nombre=""SPIRIT AEROSYSTEMS INCORPORATED"" Invoice Number: 247461
+Invoice Date: 2022-01-12
+Part Numbers: 141W5813-28
+Descriptions: CLIP
+Quantities: 2.00
+Units of Measure: PZA
+Costs: 18.3200
+Weights: N/A
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED"
+CH247462.pdf,"Invoice Number: 247462
+Invoice Date: 2022-01-12
+Part Numbers: 311W1646-7
+Descriptions: CONNECTOR PLATE
+Quantities: 2.00
+Units of Measure: H87
+Costs: 36.3700
+Weights: Not present in the invoice
+Country of Origin: USA (Receptor)
+Supplier: TIGHITCO LATINOAMERICA S.A. DE C.V. (Emisor) Based on the provided XML document, here are the fields extracted from the invoice:
+
+Invoice Number: 247462
+Invoice Date: 2022-01-12
+Part Numbers: 311W1646-7
+Descriptions: CONNECTOR PLATE
+Quantities: 2.00
+Units of Measure: H87
+Costs: 36.3700
+Weights: N/A (not present in the invoice)
+Country of Origin: USA
+Supplier: SPIRIT AEROSYSTEMS INCORPORATED"
+
+
