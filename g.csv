@@ -568,3 +568,161 @@ Costs: 28.80000, 5.16000, 45.60000, 45.60000, 386.88000, 48.23600
 Weights: 0.42500, 0.38500, 0.76000, 0.76000, 2.31000, 0.68000
 Country of Origin: MEX
 Supplier: TEGRANT INTERNATIONAL, INC."
+IACNPUE-220325C.pdf,"Based on the provided information, the extracted fields from the invoice are as follows:
+
+Invoice Number: IACNPUE-220325C
+Invoice Date: 03/25/2022
+Part Numbers: L0306905AA01, L0306897AA01, L0306910AA01, L0306915AA01, 0001097-AB, 0001098-AA
+Descriptions: PARTES MOLDEADAS DE POLIPROPILENO (AUT)
+Quantities: 2,400.000EA, 2,400.000EA, 1,200.000EA, 1,200.000EA, 1,736.000EA, 1,556.000EA
+Units of Measure: EA
+Costs: 57.60000, 10.32000, 68.40000, 68.40000, 361.08800, 48.23600
+Weights: 0.47710, 0.42820, 0.87390, 0.87390, 2.70630, 0.75260
+Country of Origin: MEX
+Supplier: TEGRANT INTERNATIONAL, INC. Fields extracted from the invoice:
+
+Invoice Number: IACNPUE-220325C
+Invoice Date: 03/25/2022
+Part Numbers: L0306905AA01, L0306897AA01, L0306910AA01, L0306915AA01, 0001097-AB, 0001098-AA
+Descriptions: PARTES MOLDEADAS DE POLIPROPILENO (AUT)
+Quantities: 2,400.000EA, 2,400.000EA, 1,200.000EA, 1,200.000EA, 1,736.000EA, 1,556.000EA
+Units of Measure: EA
+Costs: 57.60000, 10.32000, 68.40000, 68.40000, 361.08800, 48.23600
+Weights: 0.47710, 0.42820, 0.87390, 0.87390, 2.70630, 0.75260
+Country of Origin: MEX
+Supplier: TEGINTEGRANT INTERNATIONAL, INC.
+MEXAURIA SOLUTIONS, S DE R.L. DE C.V."
+IACNQRO-220311C.pdf,"Invoice Number: IACNQRO-220311C
+Invoice Date: 03/11/2022 
+
+Part Numbers: L0295063AA02, L0295064AA02, L0295065AA02, L0295066AA02
+
+Descriptions: PARTES MOLDEADAS DE POLIPROPILENO (AUT) 
+
+Quantities: 552.000EA, 320.000EA, 344.000EA, 344.000EA 
+
+Units of Measure: EA
+
+Costs: 13.74480, 16.54400, 12.72800, 14.03520 
+
+Weights: 1.12010, 1.04000, 1.23000, 1.25000 
+
+Country of Origin: MEX 
+
+Supplier: Tegrant International, Inc. 
+
+Please note that the weights, country of origin, and supplier information are from the invoice header and may not correspond to specific parts."
+IACNQRO-220325C.pdf,"Fields extracted from the invoice:
+
+Invoice Number: IACNQRO-220325C
+Invoice Date: 03/25/2022
+Part Numbers: L0295063AA02, L0295064AA02, L0295065AA02, L0295066AA02
+Descriptions: PARTES MOLDEADAS DE POLIPROPILENO (AUT)
+Quantities: 552.000EA, 640.000EA, 688.000EA, 688.000EA
+Units of Measure: EA
+Costs: 13.74480, 33.08800, 25.45600, 28.07040
+Weights: 1.12010, 1.04000, 1.23000, 1.25000
+Country of Origin: MEX
+Supplier: TEGRANT INTERNATIONAL, INC."
+LEAR MTO-220331.pdf,"Fields extracted from the invoice:
+
+Invoice Number: LEAR MTO-220331
+Invoice Date: 03/31/2022
+Part Numbers: L0706622AA02, L0706622AA02, L0706622AA02, L0706622AA02, L0737671AA01, L0737671AA01, L0737671AA01, L0737671AA01, L0737671AA01
+Descriptions: PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT), PARTES MOLDEADAS DE POLIPROPILENO (AUT)
+Quantities: 1,500.000EA, 1,500.000EA, 750.000EA, 750.000EA, 2,560.000EA, 1,920.000EA, 2,240.000EA, 2,240.000EA, 1,600.000EA
+Units of Measure: EA, EA, EA, EA, EA, EA, EA, EA, EA
+Costs: 27.21000, 27.21000, 13.60500, 13.60500, 70.83520, 53.12640, 61.98080, 61.98080, 44.27200
+Weights: 0.39770, 0.39770, 0.39770, 0.39770, 0.56260, 0.56260, 0.56260, 0.56260, 0.56260
+Country of Origin: MEX
+Supplier: TEGRANT INTERNATIONAL, INC. Based on the provided invoice, the following fields can be extracted:
+
+Invoice Number: LEAR MTO-220331
+Invoice Date: 03/31/2022
+Part Numbers: L0706622AA02, L0737671AA01
+Descriptions: PARTES MOLDEADAS DE POLIPROPILENO (AUT)
+Quantities: 1,500.000EA, 750.000EA, 2,560.000EA, 1,920.000EA, 2,240.000EA, 2,240.000EA, 1,600.000EA
+Units of Measure: EA
+Costs: 27.21000, 13.60500, 70.83520, 53.12640, 61.98080, 61.98080, 44.27200
+Weights: 0.39770, 0.39770, 0.56260, 0.56260, 0.56260, 0.56260, 0.56260
+Country of Origin: MEX
+Supplier: TEGANT INTERNATIONAL, INC."
+RTEQ-220303.pdf,"Based on the provided invoice, the following fields can be extracted:
+
+Invoice Number: RTEQ-220303
+Invoice Date: 03/03/2022
+Part Numbers: MOLD8093
+Descriptions: MOLDE DE ALUMINIO CON ACCESORIOS.
+Quantities: 1.000
+Units of Measure: EA
+Costs: 213.000
+Weights: 213.000
+Country of Origin: CHN
+Supplier: TEGANT DE MEXICO S.A. DE C.V."
+BOL11817.pdf,"Invoice Number: [extracted from the document]
+Invoice Date: [extracted from the document]
+Part Numbers: [extracted from the document]
+Descriptions: [extracted from the document]
+Quantities: [extracted from the document]
+Units of Measure: [extracted from the document]
+Costs: [extracted from the document]
+Weights: [extracted from the document]
+Country of Origin: [extracted from the document]
+Supplier: [extracted from the document]"
+BOL11825.pdf,"Sure! To extract the requested fields from the invoice, I will need a copy of the document. Please upload the invoice or provide the necessary information for me to assist you further."
+BOL11882.pdf,"Based on the information provided, I will extract the following fields from the invoice:
+
+- Invoice Number
+- Invoice Date
+- Part Numbers (if multiple entries are present)
+- Descriptions (if multiple entries are present)
+- Quantities (if multiple entries are present)
+- Units of Measure (if multiple entries are present)
+- Costs (if multiple entries are present)
+- Weights (if multiple entries are present)
+- Country of Origin
+- Supplier
+
+Please provide the invoice document in PDF, JPEG, PNG, or TIFF format, and I will extract the requested fields for you."
+BOL12338.pdf,"To assist you in extracting the requested fields from the invoice, I would need the actual invoice document or a sample of the document. Could you please upload the invoice or provide a sample?"
+HDT0072.pdf,"Invoice Number: 2200220072
+Invoice Date: 24/01/2022
+Part Numbers: TANQUE 1315
+Descriptions: BETUN DE PETROLEO
+Quantities: 52,420 LIBRAS
+Units of Measure: LIBRAS
+Costs: $9,317.59
+Weights: 52,420 LIBRAS
+Country of Origin: MEXICO
+Supplier: ASFALTOS DE LA FRONTERA SA DE CV"
+RTEQ-220401 JRZ (1).pdf,"Based on the provided invoice, here are the extracted details:
+
+1. Invoice number, invoice date, country of origin, and supplier:
+   - Invoice number: RTEQ-220401 JRZ
+   - Invoice date: 04/01/2022
+   - Country of origin: USA
+   - Supplier: TEGRANT DE MEXICO S.A. DE C.V.
+
+2. Item details:
+   - Part number: TGTI2422/MOLD31
+   - Description: MOLDE DE ALUMINIO CON ACCESORIOS.
+   - Quantity: 72
+   - Unit of measure: EA
+   - Cost: 333.390
+   - Weight: 333.390
+
+Please note that the given invoice is not well-structured, so there might be some errors in extracting the information."
+RTEQ-220401 JRZ (2).pdf,"Invoice Table:
+----------------------------------
+| Invoice Number | RTEQ-220401 JRZ |
+| Invoice Date   | 04/01/2022     |
+| Country of Origin | USA           |
+| Supplier       | TEGRANT DE MEXICO S.A. DE C.V. |
+----------------------------------
+
+Item Table:
+-------------------------------------------------------------------
+| Part Number | Description                                 | Quantity | Unit of Measure | Cost    | Weight |
+-------------------------------------------------------------------
+| TGTI2422    | MOLDE DE ALUMINIO CON ACCESORIOS             | 72       | EA              | 333.390 | 333.390|
+-------------------------------------------------------------------"
