@@ -1,12 +1,23 @@
 import fitz
 import json
 import sqlite3
+import tiktoken
+
+def num_tokens_from_string(string: str) -> int:
+    """Returns the number of tokens in a text string."""
+    encoding_name = "cl100k_base"
+    encoding = tiktoken.get_encoding(encoding_name)
+    num_tokens = len(encoding.encode(string))
+    return num_tokens
+
 def reader(pdf_path):
     with fitz.open(pdf_path) as doc:  # Open the PDF file
         text = ""
         for page in doc:  # Iterate over each page in the PDF
-            text += page.get_text()  # Append text from each page
-    return text
+            text += page.get_text() 
+        numTokens= num_tokens_from_string(text)
+        numTokens+50
+    return text,numTokens
 
 def execute_sql(sql, parameters=None):
     conn = sqlite3.connect('data.db')
@@ -51,9 +62,10 @@ def parse_json_to_sql(json_data):
         invoice_date = data.get("invoice_date")
         country_of_origin = data.get("country_of_origin")
         supplier = data.get("supplier")
+        total = data.get("total").replace("$", "")  # Elimina el signo de dólar si está presentes
 
         # Prepara la instrucción SQL para la tabla Invoice
-        sql_invoice = f"INSERT INTO Invoice (InvoiceNumber, InvoiceDate, CountryOfOrigin, Supplier) VALUES ('{invoice_number}', '{invoice_date}', '{country_of_origin}', '{supplier}');"
+        sql_invoice = f"INSERT INTO Invoice (InvoiceNumber, InvoiceDate, CountryOfOrigin, Supplier,Total) VALUES ('{invoice_number}', '{invoice_date}', '{country_of_origin}', '{supplier}','{total}');"
 
         # Prepara las instrucciones SQL para la tabla Item
         sql_items = []

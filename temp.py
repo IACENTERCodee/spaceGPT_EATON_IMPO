@@ -12,7 +12,8 @@ cursor.execute('''
         InvoiceNumber VARCHAR(255) PRIMARY KEY,
         InvoiceDate VARCHAR(255),
         CountryOfOrigin VARCHAR(255),
-        Supplier VARCHAR(255)
+        Supplier VARCHAR(255),
+        Total VARCHAR(255)
     )
 ''')
 
