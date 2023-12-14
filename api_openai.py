@@ -1,18 +1,18 @@
 import os
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
-
+import json
 class OpenAIHelper:
     """A helper class to interact with OpenAI's API for specific tasks such as extracting information from invoices."""
 
-    def __init__(self, model="gpt-3.5-turbo"):
+    def __init__(self, model="gpt-3.5-turbo-1106"):
         """Initializes the OpenAIHelper with the specified model and API key."""
         load_dotenv()
         self.api_key = os.getenv("OPENAI_API_KEY")
         self.model = model
         self.client = AsyncOpenAI(api_key=self.api_key)
 
-    async def extract_fields_from_invoice(self, invoice_text, max_length=4096):
+    async def extract_fields_from_invoice(self, invoice_text, max_length=16385):
         """
         Asynchronously extracts fields from a given invoice text.
 
@@ -25,19 +25,19 @@ class OpenAIHelper:
                   "1. Invoice number, invoice date, country of origin, supplier, and total. "
                   "2. For each item in the invoice, list the part number, description, quantity, unit of measure, cost, and weight.")
         json_format = """{
-            "invoice_number": "",
-            "invoice_date": "",
-            "country_of_origin": "",
-            "supplier": "",
-            "total": "",
+            "invoice_number": "str",
+            "invoice_date": "str",
+            "country_of_origin": "str",
+            "supplier": "str",
+            "total": "float",
             "items": [
                 {
-                "part_number": "",
-                "description": "",
-                "quantity": "",
-                "unit_of_measure": "",
-                "cost": "",
-                "weight": ""
+                "part_number": "str",
+                "description": "str",
+                "quantity": "int",
+                "unit_of_measure": "str",
+                "cost": "float",
+                "weight": "float"
                 }
             ]}"""
 
@@ -48,9 +48,9 @@ class OpenAIHelper:
                     model=self.model,
                     messages=[
                         {"role": "system", "content": "You are an assistant skilled in extracting specific information from structured documents like invoices."},
-                        {"role": "system", "content": f"Return data in the following format: JSON with key-value pairs. {json_format}"},
+                        {"role": "system", "content": f"Return data in the following format: JSON with key-value pairs. {json_format}"+ "and respect str and int types remove $ of values."},
                         {"role": "user", "content": f"{prompt}\n\n{segment}"}
-                    ]
+                    ],
                 )
                 responses.append(response.choices[0].message.content)
                 if response.choices[0].finish_reason == 'length':
@@ -59,7 +59,18 @@ class OpenAIHelper:
                 print(f"An error occurred: {e}")
                 # Additional error handling logic can be added here.
 
-        return " ".join(responses) if len(responses) > 1 else responses[0]
+            combined_response = {}
+            for response in responses:
+                try:
+                    #regex for extract json el primer { y el ultimo }
+                    response =  response[response.find("{"):response.rfind("}")+1]
+                    partial_json = json.loads(response)
+                    for key, value in partial_json.items():
+                        combined_response.setdefault(key, []).append(value)
+                except json.JSONDecodeError:
+                    print("Error al decodificar JSON:", response)
+
+            return json.dumps(combined_response, indent=4)
 
     async def continue_conversation(self, conversation, next_prompt):
         """
@@ -97,8 +108,3 @@ class OpenAIHelper:
                 segment = word + " "
         segments.append(segment)
         return segments
-
-# Usage Example
-# openai_helper = OpenAIHelper()
-# invoice_text = "Your invoice text here..."
-# asyncio.run(openai_helper.extract_fields_from_invoice(invoice_text))

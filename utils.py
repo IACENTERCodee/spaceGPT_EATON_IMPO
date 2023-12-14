@@ -2,7 +2,8 @@ import fitz
 import json
 import sqlite3
 import tiktoken
-
+import pandas as pd
+from PyPDF2 import PdfReader
 def num_tokens_from_string(string: str) -> int:
     """Returns the number of tokens in a text string."""
     encoding_name = "cl100k_base"
@@ -18,6 +19,15 @@ def reader(pdf_path):
         numTokens= num_tokens_from_string(text)
         numTokens+50
     return text,numTokens
+def extract_text_from_pdf(pdf_path):
+    text=""
+    pdf_reader=PdfReader(pdf_path)
+    for page in pdf_reader.pages:
+        text+=page.extract_text()
+    numTokens= num_tokens_from_string(text)
+    numTokens+50
+    return text,numTokens
+
 
 def execute_sql(sql, parameters=None):
     conn = sqlite3.connect('data.db')
@@ -62,7 +72,11 @@ def parse_json_to_sql(json_data):
         invoice_date = data.get("invoice_date")
         country_of_origin = data.get("country_of_origin")
         supplier = data.get("supplier")
-        total = data.get("total").replace("$", "")  # Elimina el signo de dólar si está presentes
+        total = data.get("total")
+        if total.count("$") > 1:
+            total = total.replace("$", "", 1)
+        elif total.count("$") == 0:
+            total = total
 
         # Prepara la instrucción SQL para la tabla Invoice
         sql_invoice = f"INSERT INTO Invoice (InvoiceNumber, InvoiceDate, CountryOfOrigin, Supplier,Total) VALUES ('{invoice_number}', '{invoice_date}', '{country_of_origin}', '{supplier}','{total}');"
@@ -83,8 +97,39 @@ def parse_json_to_sql(json_data):
         return sql_invoice, sql_items
 
     except json.JSONDecodeError:
-        print("Error al parsear el JSON")
+        print("Error al parsear el JSON" + json_data)
         return None, None
     except KeyError as e:
         print(f"Clave no encontrada en el JSON: {e}")
         return None, None
+    
+
+
+def convert_json_to_dataframe_invoice(invoice_dict):
+    if not isinstance(invoice_dict, dict):
+        return pd.DataFrame()
+
+    # Extraer el primer elemento de cada lista para obtener los valores reales
+    invoice_data = {key: value[0] if isinstance(value, list) else value for key, value in invoice_dict.items()}
+
+    return pd.DataFrame([invoice_data])
+
+def convert_json_to_dataframe_items(items_list):
+    if not isinstance(items_list, list) or not all(isinstance(item, list) for item in items_list):
+        return pd.DataFrame()
+
+    # Asumimos que los ítems están en la primera lista, si la estructura es una lista de listas
+    items = items_list[0] if items_list and isinstance(items_list[0], list) else items_list
+
+    return pd.DataFrame(items)
+
+def is_pdf_readable(pdf_path):
+    try:
+        with fitz.open(pdf_path) as doc:  # Open the PDF file
+            text = ""
+            for page in doc: 
+                text += page.get_text()
+            return True
+    except:
+        return False
+    

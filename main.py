@@ -1,51 +1,91 @@
 import gradio as gr
-from utils import reader, parse_json_to_sql, execute_sql
+from utils import reader, is_pdf_readable, execute_sql,convert_json_to_dataframe_invoice,convert_json_to_dataframe_invoice,convert_json_to_dataframe_items
 import api_openai
 import asyncio
 import time
-from aiolimiter import AsyncLimiter
-
-
+from db import insert_invoice_data
+import json
+import pandas as pd
+# Global variable to track the number of tokens processed
 tokens_processed = 0
-
+token_limit_per_minute = 90000
 async def process_file(file):
     global tokens_processed
-    token_limit_per_minute = 90000
 
-    # Check if the token limit is reached
-    if tokens_processed >= token_limit_per_minute:
-        await asyncio.sleep(60 - time.time() % 60)  # Sleep until the start of the next minute
-        tokens_processed = 0  # Reset token count for the new minute
-
-    # Implement the processing for each file
     text, numTokens = reader(file)  # Assuming reader returns the number of tokens
-    tokens_processed += numTokens
-
-    if tokens_processed >= token_limit_per_minute:
-        await asyncio.sleep(60 - time.time() % 60)  # Sleep if the limit is reached within processing
+    if tokens_processed + numTokens > token_limit_per_minute:
+        await asyncio.sleep(60 - time.time() % 60)
         tokens_processed = 0
 
+    tokens_processed += numTokens
     OpenAIHelper = api_openai.OpenAIHelper()
     extracted_text = await OpenAIHelper.extract_fields_from_invoice(text, numTokens)
-    return parse_json_to_sql(extracted_text)
+    
+    if extracted_text is not None:
+        json_data = json.loads(extracted_text)
+        if is_pdf_readable(file):
+            insert_invoice_data(json_data)
+            invoices = convert_json_to_dataframe_invoice(json_data)
+            items = convert_json_to_dataframe_items(json_data)
+        else:
+            invoices = pd.DataFrame()
+            items = pd.DataFrame()
+    else:
+        invoices = pd.DataFrame()
+        items = pd.DataFrame()
 
-def insert_data_to_db(output):
-    output = output[1:-1].rstrip(", ")
-    execute_sql(output)
+    return extracted_text, invoices, items
+
+
+async def process_files_in_batches(files):
+    global tokens_processed
+    batch = []
+    text_results = []
+    invoices_results = []
+    items_results = []
+
+    for file in files:
+        text, numTokens = reader(file)
+        if tokens_processed + numTokens <= token_limit_per_minute:
+            batch.append(file)
+            tokens_processed += numTokens
+        else:
+            batch_results = await asyncio.gather(*[process_file(f) for f in batch])
+            for text, invoices, items in batch_results:
+                text_results.append(text)
+                invoices_results.append(invoices)
+                items_results.append(items)
+            batch = [file]
+            tokens_processed = numTokens
+            await asyncio.sleep(60 - time.time() % 60)
+
+    if batch:
+        batch_results = await asyncio.gather(*[process_file(f) for f in batch])
+        for text, invoices, items in batch_results:
+            text_results.append(text)
+            invoices_results.append(invoices)
+            items_results.append(items)
+
+    return text_results, invoices_results, items_results
+
 
 if __name__ == '__main__':
-    with gr.Blocks() as ui:
+    with gr.Blocks(theme=gr.themes.Soft()) as ui:
         with gr.Row():
-            with gr.Column():
-                gr.Markdown("## Invoice Reader")
+            with gr.Column(scale=0.5):
+                gr.Markdown("# Invoice Reader")
+                gr.Markdown("## Upload PDF")
+                # markdown image syntax: ![alt text](image.png)
+                gr.Markdown("![](https://i.imgur.com/VFsGQT8.jpeg)")
                 file = gr.File(label="Upload PDF", type='filepath', file_count="multiple", file_types=["pdf"])
                 click = gr.Button(value="Extract")
             with gr.Column():
                 gr.Markdown("## Invoice Data")
-                output = gr.Textbox(label="Output Box")
-                insert = gr.Button(value="Insert to DB")
+                output = gr.Textbox(label="Output Box",visible=False)
+                invoices = gr.DataFrame(show_label=True,wrap=True)
+                items = gr.DataFrame(show_label=True,wrap=True)
             
-            insert.click(fn=insert_data_to_db, inputs=output)
-            click.click(fn=extractor, inputs=file, outputs=output, api_name='extractor')
+            outputs=[output,invoices, items]
+            click.click(fn=process_files_in_batches, inputs=file, outputs=outputs, api_name='extractor')
             
     ui.launch()
