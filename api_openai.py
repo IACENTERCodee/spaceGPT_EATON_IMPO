@@ -48,7 +48,7 @@ class OpenAIHelper:
                     model=self.model,
                     messages=[
                         {"role": "system", "content": "You are an assistant skilled in extracting specific information from structured documents like invoices."},
-                        {"role": "system", "content": f"Return data in the following format: JSON with key-value pairs. {json_format}"+ "and respect str and int types remove $ of values."},
+                        {"role": "system", "content": f"Return data complete in the following format: JSON with key-value pairs. {json_format}"+ "and respect str and int types remove $ of values."},
                         {"role": "user", "content": f"{prompt}\n\n{segment}"}
                     ],
                 )

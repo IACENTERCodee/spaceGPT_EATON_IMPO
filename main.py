@@ -6,9 +6,13 @@ import time
 from db import insert_invoice_data
 import json
 import pandas as pd
-# Global variable to track the number of tokens processed
+
+
 tokens_processed = 0
 token_limit_per_minute = 90000
+
+
+
 async def process_file(file):
     global tokens_processed
 
