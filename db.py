@@ -1,20 +1,31 @@
-import psycopg2
+import pyodbc
 import json
 import re
+import os 
+from dotenv import load_dotenv
 
 
 
 def connect_db():
-    """Create and return a connection to the database."""
-    return psycopg2.connect(
-            user="postgres",
-            password="mypassword",
-            host="127.0.0.1",
-            port="5432",
-            database="postgres"
+    """Create and return a connection to the database using environment variables."""
+    load_dotenv()
 
-    )
+    host = os.getenv("HOST")
+    user = os.getenv("USER")
+    password = os.getenv("PASS")
+    database = os.getenv("DATABASE")
 
+    try:
+        # The driver name might vary depending on the SQL Server version and the operating system.
+        # Common drivers are 'SQL Server', 'ODBC Driver 17 for SQL Server', etc.
+        # Make sure to install the correct ODBC driver for your SQL Server version.
+        connection_string = f'DRIVER={{SQL Server}};SERVER={host};DATABASE={database};UID={user};PWD={password}'
+        dbconection=pyodbc.connect(Driver='{ODBC Driver 17 for SQL Server}',Server=host,Database=database,UID=user,PWD=password,autocommit=True)
+        print("Connection to database successful")
+        return dbconection
+    except Exception as e:
+        print(e)
+        print("Connection to database failed")
 def extract_float_from_string(s):
     """Extrae el primer número flotante de una cadena."""
     if s is None:
@@ -65,39 +76,41 @@ def insert_invoice_data(json_data):
     conn = connect_db()
     try:
         with conn:
-            with conn.cursor() as cur:
-                # Procesa y convierte los datos del JSON
-                processed_data = process_and_convert_data(json_data)
+            cur = conn.cursor()
+            # Procesa y convierte los datos del JSON
+            processed_data = process_and_convert_data(json_data)
 
-                # Inserta en la tabla de facturas
-                invoice_data = processed_data
+            # Inserta en la tabla de facturas
+            invoice_data = processed_data
+            cur.execute("""
+                INSERT INTO invoices (invoice_number, invoice_date, country_of_origin, supplier, total)
+                VALUES (?, ?, ?, ?, ?);
+            """, (invoice_data['invoice_number'], invoice_data['invoice_date'], 
+                  invoice_data['country_of_origin'], invoice_data['supplier'], 
+                  invoice_data['total']))
+                  
+            cur.execute("SELECT IDENT_CURRENT('invoices');")
+            invoice_id = cur.fetchone()[0]
+
+            # Inserta en la tabla de elementos de factura
+            for item in invoice_data['items']:
+                if item['weight'] == '':
+                    item['weight'] = 0.0
+                if item['cost'] == '':
+                    item['cost'] = 0.0
+                if item['quantity'] == '':
+                    item['quantity'] = 0.0
+                if item['unit_of_measure'] == '':
+                    item['unit_of_measure'] = 'N/A'
                 cur.execute("""
-                    INSERT INTO invoices (invoice_number, invoice_date, country_of_origin, supplier, total)
-                    VALUES (%s, %s, %s, %s, %s) RETURNING invoice_id;
-                """, (invoice_data['invoice_number'], invoice_data['invoice_date'], 
-                      invoice_data['country_of_origin'], invoice_data['supplier'], 
-                      invoice_data['total']))
-                invoice_id = cur.fetchone()[0]
-
-                # Inserta en la tabla de elementos de factura
-                for item in invoice_data['items']:
-                    if item['weight'] == '':
-                        item['weight'] = 0.0
-                    if item['cost'] == '':
-                        item['cost'] = 0.0
-                    if  item['quantity'] == '':
-                        item['quantity'] = 0.0
-                    if item['unit_of_measure'] == '':
-                        item['unit_of_measure'] = 'N/A'
-                    cur.execute("""
-                        INSERT INTO line_items (invoice_id, part_number, description, quantity, unit_of_measure, cost, weight)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s);
-                    """, (invoice_id, item['part_number'], item['description'], 
-                          item['quantity'], item['unit_of_measure'], item['cost'], item['weight']))
-    except psycopg2.Error as e:
-        print(f"Error de PostgreSQL: {e}")
+                    INSERT INTO line_items (invoice_id, part_number, description, quantity, unit_of_measure, cost, weight)
+                    VALUES (?, ?, ?, ?, ?, ?, ?);
+                """, (invoice_id, item['part_number'], item['description'], 
+                      item['quantity'], item['unit_of_measure'], item['cost'], item['weight']))
+            conn.commit()
+    except pyodbc.Error as e:
+        print(f"Error de SQL Server: {e}")
     except Exception as e:
         print(f"Error: {e}")
     finally:
         conn.close()
-    

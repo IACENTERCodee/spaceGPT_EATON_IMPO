@@ -92,4 +92,5 @@ if __name__ == '__main__':
             outputs=[output,invoices, items]
             click.click(fn=process_files_in_batches, inputs=file, outputs=outputs, api_name='extractor')
             
-    ui.launch()
+    ui.launch(auth=("david.salas@sintek.com.mx", "david.salas@sintek.com.mx"),server_port=8888,server_name="0.0.0.0")
+
