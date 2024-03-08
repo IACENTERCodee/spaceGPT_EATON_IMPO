@@ -4,6 +4,7 @@ import sqlite3
 import tiktoken
 import pandas as pd
 from PyPDF2 import PdfReader
+from test import convert_pdf_to_text
 def num_tokens_from_string(string: str) -> int:
     """Returns the number of tokens in a text string."""
     encoding_name = "cl100k_base"
@@ -12,13 +13,12 @@ def num_tokens_from_string(string: str) -> int:
     return num_tokens
 
 def reader(pdf_path):
-    with fitz.open(pdf_path) as doc:  # Open the PDF file
-        text = ""
-        for page in doc:  # Iterate over each page in the PDF
-            text += page.get_text() 
-        numTokens= num_tokens_from_string(text)
-        numTokens+50
+    text=convert_pdf_to_text(pdf_path)
+    numTokens= num_tokens_from_string(text)
+    numTokens+50
     return text,numTokens
+
+
 def extract_text_from_pdf(pdf_path):
     text=""
     pdf_reader=PdfReader(pdf_path)

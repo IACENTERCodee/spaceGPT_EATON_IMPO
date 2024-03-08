@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 import json
+from clients import search_RFC_in_text
 class OpenAIHelper:
     """A helper class to interact with OpenAI's API for specific tasks such as extracting information from invoices."""
 
@@ -23,24 +24,9 @@ class OpenAIHelper:
         segments = self._split_text(invoice_text, max_length)
         prompt = ("Please extract the following details from the invoice: "
                   "1. Invoice number, invoice date, country of origin, supplier, and total. "
-                  "2. For each item in the invoice, list the part number, description, quantity, unit of measure, cost, and weight.")
-        json_format = """{
-            "invoice_number": "str",
-            "invoice_date": "str",
-            "country_of_origin": "str",
-            "supplier": "str",
-            "total": "float",
-            "items": [
-                {
-                "part_number": "str",
-                "description": "str",
-                "quantity": "int",
-                "unit_of_measure": "str",
-                "cost": "float",
-                "weight": "float"
-                }
-            ]}"""
-
+                  "2. For each item in the invoice, list the part number, description, quantity, unit of measure, cost, and weight."
+                    "3. There are times that the information is in the same line.")
+        json_format =  search_RFC_in_text(invoice_text)
         responses = []
         for segment in segments:
             try:

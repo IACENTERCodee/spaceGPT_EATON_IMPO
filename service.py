@@ -3,10 +3,11 @@ import asyncio
 import time
 import json
 import pandas as pd
-from utils import reader, is_pdf_readable,convert_json_to_dataframe_invoice,convert_json_to_dataframe_invoice,convert_json_to_dataframe_items
+from utils import reader,is_pdf_readable,convert_json_to_dataframe_invoice,convert_json_to_dataframe_invoice,convert_json_to_dataframe_items
 import api_openai
-from db import insert_invoice_data
-
+#from db import insert_invoice_data
+import re
+from rehelper import extract_rfc
 tokens_processed = 0
 token_limit_per_minute = 90000
 
@@ -14,7 +15,8 @@ token_limit_per_minute = 90000
 async def process_file(file):
     global tokens_processed
 
-    text, numTokens = reader(file)  # Assuming reader returns the number of tokens
+    text, numTokens = reader(file) 
+    
     if tokens_processed + numTokens > token_limit_per_minute:
         await asyncio.sleep(60 - time.time() % 60)
         tokens_processed = 0
@@ -24,9 +26,15 @@ async def process_file(file):
     extracted_text = await OpenAIHelper.extract_fields_from_invoice(text, numTokens)
     
     if extracted_text is not None:
+        match = re.search(r'\{.*\}', extracted_text, re.DOTALL)
+        if match:
+            extracted_text = match.group(0)
+        # save extracted text to a file
+        with open(f"{file}.json", "w") as f:
+            f.write(extracted_text)
         json_data = json.loads(extracted_text)
         if is_pdf_readable(file):
-            insert_invoice_data(json_data)
+            #insert_invoice_data(json_data)
             invoices = convert_json_to_dataframe_invoice(json_data)
             items = convert_json_to_dataframe_items(json_data)
         else:
@@ -40,6 +48,8 @@ async def process_file(file):
         print(f"Archivo {file} eliminado con éxito.")
     except OSError as e:
         print(f"Error al eliminar {file}: {e.strerror}")
+    print(f"Archivo {file} procesado con éxito.")
+    
     return extracted_text, invoices, items
 
 # Función para procesar todos los archivos en un directorio
@@ -79,6 +89,6 @@ async def process_directory(directory_path):
 
 # Ejecución principal
 if __name__ == '__main__':
-    directory_path = r'D:\\SpaceGPT_Files\\' 
+    directory_path = r'/home/javieria/Pictures/GPT' 
     results = asyncio.run(process_directory(directory_path))
     
