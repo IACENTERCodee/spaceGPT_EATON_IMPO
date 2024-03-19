@@ -81,7 +81,7 @@ def search_RFC_in_text(text):
         # Check if the RFC is found in the text
         if search_word(text, rfc):
             print(f"RFC {rfc} encontrado")
-            return get_prompt(rfc)
+            return get_prompt(rfc), rfc
     # Return the general prompt if no RFC is found
     print("RFC no encontrado")
     return get_prompt("GENERAL")

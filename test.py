@@ -10,7 +10,6 @@ def convertpdtext(input_folder):
             with open(pdf_path, 'rb') as pdf_file:
                 extract_text_to_fp(pdf_file, output_buffer, output_type='text')
                 html_content = output_buffer.getvalue().decode('utf-8')
-                print(html_content)
 
 # Example usage:
 
@@ -18,7 +17,7 @@ def convertpdtext(input_folder):
 def convert_pdf_to_text(pdf_path):
     output_buffer = BytesIO()
     with open(pdf_path, 'rb') as pdf_file:
-        extract_text_to_fp(pdf_file, output_buffer, output_type='text')
+        extract_text_to_fp(pdf_file, output_buffer, output_type='tag')
         text_content = output_buffer.getvalue().decode('utf-8')
     return text_content
 

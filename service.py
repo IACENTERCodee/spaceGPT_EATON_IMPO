@@ -1,11 +1,11 @@
-import os
+dimport os
 import asyncio
 import time
 import json
 import pandas as pd
 from utils import reader,is_pdf_readable,convert_json_to_dataframe_invoice,convert_json_to_dataframe_invoice,convert_json_to_dataframe_items
 import api_openai
-#from db import insert_invoice_data
+from db import insert_invoice_data
 import re
 from rehelper import extract_rfc
 tokens_processed = 0
@@ -24,7 +24,7 @@ async def process_file(file):
     tokens_processed += numTokens
     OpenAIHelper = api_openai.OpenAIHelper()
     extracted_text = await OpenAIHelper.extract_fields_from_invoice(text, numTokens)
-    
+    print(extracted_text)
     if extracted_text is not None:
         match = re.search(r'\{.*\}', extracted_text, re.DOTALL)
         if match:
@@ -34,7 +34,7 @@ async def process_file(file):
             f.write(extracted_text)
         json_data = json.loads(extracted_text)
         if is_pdf_readable(file):
-            #insert_invoice_data(json_data)
+            insert_invoice_data(json_data)
             invoices = convert_json_to_dataframe_invoice(json_data)
             items = convert_json_to_dataframe_items(json_data)
         else:
@@ -44,7 +44,7 @@ async def process_file(file):
         invoices = pd.DataFrame()
         items = pd.DataFrame()
     try:
-        os.remove(file)
+        #os.remove(file)
         print(f"Archivo {file} eliminado con éxito.")
     except OSError as e:
         print(f"Error al eliminar {file}: {e.strerror}")

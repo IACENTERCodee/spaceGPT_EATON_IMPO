@@ -3,10 +3,12 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 import json
 from clients import search_RFC_in_text
+from asis import submit_and_wait_for_response
+import asyncio
 class OpenAIHelper:
     """A helper class to interact with OpenAI's API for specific tasks such as extracting information from invoices."""
 
-    def __init__(self, model="gpt-3.5-turbo-1106"):
+    def __init__(self, model="gpt-4-1106-preview"):
         """Initializes the OpenAIHelper with the specified model and API key."""
         load_dotenv()
         self.api_key = os.getenv("OPENAI_API_KEY")
@@ -26,7 +28,10 @@ class OpenAIHelper:
                   "1. Invoice number, invoice date, country of origin, supplier, and total. "
                   "2. For each item in the invoice, list the part number, description, quantity, unit of measure, cost, and weight."
                     "3. There are times that the information is in the same line.")
-        json_format =  search_RFC_in_text(invoice_text)
+        json_format,rfc =  search_RFC_in_text(invoice_text)
+        if rfc=="MMJ930128UR6":
+            extracted_text = submit_and_wait_for_response(invoice_text)
+            return  extracted_text
         responses = []
         for segment in segments:
             try:
@@ -77,7 +82,7 @@ class OpenAIHelper:
             print(f"An error occurred: {e}")
             # Additional error handling logic can be added here.
 
-    def _split_text(self, text, max_length=4096):
+    def _split_text(self, text, max_length=40960):
         """
         Splits a given text into smaller segments based on the specified maximum length.
 
