@@ -1,4 +1,4 @@
-dimport os
+import os
 import asyncio
 import time
 import json
@@ -24,7 +24,6 @@ async def process_file(file):
     tokens_processed += numTokens
     OpenAIHelper = api_openai.OpenAIHelper()
     extracted_text = await OpenAIHelper.extract_fields_from_invoice(text, numTokens)
-    print(extracted_text)
     if extracted_text is not None:
         match = re.search(r'\{.*\}', extracted_text, re.DOTALL)
         if match:
