@@ -7,7 +7,6 @@ from utils import reader,is_pdf_readable,convert_json_to_dataframe_invoice,conve
 import api_openai
 from db import insert_invoice_data
 import re
-from rehelper import extract_rfc
 tokens_processed = 0
 token_limit_per_minute = 90000
 
@@ -43,7 +42,7 @@ async def process_file(file):
         invoices = pd.DataFrame()
         items = pd.DataFrame()
     try:
-        #os.remove(file)
+        os.remove(file)
         print(f"Archivo {file} eliminado con éxito.")
     except OSError as e:
         print(f"Error al eliminar {file}: {e.strerror}")
@@ -63,6 +62,7 @@ async def process_directory(directory_path):
         file_path = os.path.join(directory_path, file_name)
         # Asegúrate de que el archivo es un PDF
         if os.path.isfile(file_path) and file_name.lower().endswith('.pdf'):
+            print(file_name)
             text, numTokens = reader(file_path)
             if tokens_processed + numTokens <= token_limit_per_minute:
                 batch.append(file_path)
@@ -88,6 +88,6 @@ async def process_directory(directory_path):
 
 # Ejecución principal
 if __name__ == '__main__':
-    directory_path = r'/home/javieria/Pictures/GPT' 
+    directory_path = r'D:/SpaceGPT_Files/' 
     results = asyncio.run(process_directory(directory_path))
     

@@ -75,7 +75,7 @@ if __name__ == '__main__':
     with gr.Blocks() as ui:
         with gr.Row():
             with gr.Column():
-                gr.Markdown("Archivos PDF")
+                gr.Markdown("Facturas Importación")
                 file_input = gr.File(label="Subir PDF", type="filepath", file_count="multiple", file_types=["pdf"])
                 submit_button = gr.Button("Copiar Archivos")
                 output = gr.Textbox(label="Resultado")

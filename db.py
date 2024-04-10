@@ -5,7 +5,6 @@ import os
 from dotenv import load_dotenv
 
 
-
 def connect_db():
     """Create and return a connection to the database using environment variables."""
     load_dotenv()
@@ -45,24 +44,7 @@ def convert_to_single_value(value):
     return value
 
 def process_and_convert_data(data):
-    """Procesa y convierte los datos del JSON según su tipo esperado."""
     
-    if isinstance(data, dict):
-        processed_data = {}
-        for key, value in data.items():
-            if key == 'total':
-                # Extrae un número flotante de una cadena
-                processed_data[key] = extract_float_from_string(convert_to_single_value(value))
-            elif key == 'items':
-                # Procesa una lista de elementos
-                processed_data[key] = [process_and_convert_data(item) for item in value[0]]
-            else:
-                # Convierte listas a un solo valor y mantiene otros tipos como están
-                processed_data[key] = convert_to_single_value(value)
-        return processed_data
-    elif isinstance(data, list):
-        return [process_and_convert_data(item) for item in data]
-    else:
         return data
 
 
@@ -80,33 +62,47 @@ def insert_invoice_data(json_data):
             # Procesa y convierte los datos del JSON
             processed_data = process_and_convert_data(json_data)
 
+            processed_data["processed"] = 0
+
             # Inserta en la tabla de facturas
             invoice_data = processed_data
             cur.execute("""
-                INSERT INTO invoices (invoice_number, invoice_date, country_of_origin, supplier, total)
-                VALUES (?, ?, ?, ?, ?);
+                INSERT INTO invoices (invoice_number, invoice_date, supplier, total, e_docu, incoterm, lumps, freights, rfc, processed)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """, (invoice_data['invoice_number'], invoice_data['invoice_date'], 
-                  invoice_data['country_of_origin'], invoice_data['supplier'], 
-                  invoice_data['total']))
+                  invoice_data['supplier'], invoice_data['total'], 
+                  invoice_data['e_docu'], invoice_data['incoterm'],
+                  invoice_data['lumps'], invoice_data['freights'], 
+                  invoice_data['rfc'], invoice_data['processed']))
                   
             cur.execute("SELECT IDENT_CURRENT('invoices');")
             invoice_id = cur.fetchone()[0]
 
             # Inserta en la tabla de elementos de factura
             for item in invoice_data['items']:
-                if item['weight'] == '':
-                    item['weight'] = 0.0
-                if item['cost'] == '':
-                    item['cost'] = 0.0
-                if item['quantity'] == '':
-                    item['quantity'] = 0.0
-                if item['unit_of_measure'] == '':
-                    item['unit_of_measure'] = 'N/A'
+                if item['part_number'] == None:
+                    item['part_number'] = 'N/A'
+                if item['fraction'] == None:
+                    item['fraction'] = 'N/A'
+                if item['rate'] == None:
+                    item['rate'] = 'N/A'
+                if item['brand'] == None:
+                    item['brand'] = 'N/A'
+                if item['model'] == None:
+                    item['model'] = 'N/A'
+                if item['serie'] == None:
+                    item['serie'] = 'N/A'
+                if item['po'] == None:
+                    item['po'] = 'N/A'
+                if item['ref'] == None:
+                    item['ref'] = 'N/A'
                 cur.execute("""
-                    INSERT INTO line_items (invoice_id, part_number, description, quantity, unit_of_measure, cost, weight)
-                    VALUES (?, ?, ?, ?, ?, ?, ?);
+                    INSERT INTO line_items (invoice_id, part_number, description, quantity, unit_of_measure, unit_cost, 
+                            net_weight, total, gross_weight, country_of_origin, fraction, rate, brand, model, serie, po, ref)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """, (invoice_id, item['part_number'], item['description'], 
-                      item['quantity'], item['unit_of_measure'], item['cost'], item['weight']))
+                      item['quantity'], item['unit_of_measure'], item['unit_cost'], item['net_weight'], item['total'], item['gross_weight'],
+                      item['country_of_origin'], item['fraction'], item['rate'], item['brand'], item['model'], item['serie'], item['po'], item['ref']))
             conn.commit()
     except pyodbc.Error as e:
         print(f"Error de SQL Server: {e}")
