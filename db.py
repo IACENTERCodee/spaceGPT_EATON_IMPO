@@ -64,6 +64,9 @@ def insert_invoice_data(json_data):
 
             processed_data["processed"] = 0
 
+            if processed_data['e_docu'] == None:
+                processed_data['e_docu'] = "N/A"
+
             # Inserta en la tabla de facturas
             invoice_data = processed_data
             cur.execute("""
