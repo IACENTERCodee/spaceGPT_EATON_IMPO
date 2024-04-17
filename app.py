@@ -30,7 +30,7 @@ def get_text_percentage(file_name: str) -> float:
 
 
 def copy_files_to_folder(files):
-    destination_folder = 'D:\\SpaceGPT_Files\\'
+    destination_folder = 'D:\\SpaceGPT_EATON_IMPO_FILES\\'
     copied_files = []
     low_text_files = []  # Para llevar un seguimiento de los archivos con menos del 10% de texto
     error_files = []  # Para llevar un seguimiento de los archivos que encontraron errores durante el procesamiento
@@ -82,4 +82,4 @@ if __name__ == '__main__':
             
             submit_button.click(fn=copy_files_to_folder, inputs=file_input, outputs=output)
 
-    ui.launch(auth=("david.salas@sintek.com.mx", "david.salas@sintek.com.mx"),server_port=8888,server_name="0.0.0.0")
+    ui.launch(auth=("david.salas@sintek.com.mx", "david.salas@sintek.com.mx"),server_port=7777,server_name="0.0.0.0")

@@ -88,6 +88,6 @@ async def process_directory(directory_path):
 
 # Ejecución principal
 if __name__ == '__main__':
-    directory_path = r'D:/SpaceGPT_Files/' 
+    directory_path = r'D:/SpaceGPT_EATON_IMPO_FILES/' 
     results = asyncio.run(process_directory(directory_path))
     

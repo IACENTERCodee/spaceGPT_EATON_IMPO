@@ -64,40 +64,52 @@ def insert_invoice_data(json_data):
 
             processed_data["processed"] = 0
 
-            if processed_data['e_docu'] == None:
+            if processed_data['e_docu'] is None:
                 processed_data['e_docu'] = "N/A"
+            if processed_data['lumps'] is None:
+                processed_data['lumps'] = "N/A"
+            if processed_data['incoterm'] is None:
+                processed_data['incoterm'] = "N/A"
 
             # Inserta en la tabla de facturas
             invoice_data = processed_data
             cur.execute("""
-                INSERT INTO invoices (invoice_number, invoice_date, supplier, total, e_docu, incoterm, lumps, freights, rfc, processed)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                INSERT INTO invoices (invoice_number, invoice_date, supplier, total, e_docu, incoterm, lumps, rfc, processed)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
             """, (invoice_data['invoice_number'], invoice_data['invoice_date'], 
                   invoice_data['supplier'], invoice_data['total'], 
                   invoice_data['e_docu'], invoice_data['incoterm'],
-                  invoice_data['lumps'], invoice_data['freights'], 
-                  invoice_data['rfc'], invoice_data['processed']))
+                  invoice_data['lumps'], invoice_data['rfc'], invoice_data['processed']))
                   
             cur.execute("SELECT IDENT_CURRENT('invoices');")
             invoice_id = cur.fetchone()[0]
 
+            # Lista de claves que se deben verificar y agregar si no existen
+            keys_to_check = ['part_number', 'fraction', 'rate', 'brand', 'model', 'serie', 'po', 'ref']
+
+
             # Inserta en la tabla de elementos de factura
             for item in invoice_data['items']:
-                if item['part_number'] == None:
+                # Verifica y agrega las claves que no existen
+                for key in keys_to_check:
+                    item.setdefault(key, 'N/A')
+
+                # Verifica y actualiza los valores nulos
+                if item['part_number'] is None:
                     item['part_number'] = 'N/A'
-                if item['fraction'] == None:
+                if item['fraction'] is None:
                     item['fraction'] = 'N/A'
-                if item['rate'] == None:
+                if item['rate'] is None:
                     item['rate'] = 'N/A'
-                if item['brand'] == None:
+                if item['brand'] is None:
                     item['brand'] = 'N/A'
-                if item['model'] == None:
+                if item['model'] is None:
                     item['model'] = 'N/A'
-                if item['serie'] == None:
+                if item['serie'] is None:
                     item['serie'] = 'N/A'
-                if item['po'] == None:
+                if item['po'] is None:
                     item['po'] = 'N/A'
-                if item['ref'] == None:
+                if item['ref'] is None:
                     item['ref'] = 'N/A'
                 cur.execute("""
                     INSERT INTO line_items (invoice_id, part_number, description, quantity, unit_of_measure, unit_cost, 
